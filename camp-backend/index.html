@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB 使用者列表</title>
+</head>
+<body>
+    <h1>使用者列表</h1>
+    <ul id="userList"></ul>
+
+    <script>
+        async function fetchUsers() {
+            const response = await fetch("http://localhost:3000/users");
+            const users = await response.json();
+
+            const userList = document.getElementById("userList");
+            userList.innerHTML = ""; // 清空列表
+
+            users.forEach(user => {
+                const li = document.createElement("li");
+                li.textContent = `${user.name} - ${user.email}`;
+                userList.appendChild(li);
+            });
+        }
+
+        fetchUsers();
+    </script>
+</body>
+</html>

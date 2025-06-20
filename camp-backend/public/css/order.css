@@ -1,0 +1,63 @@
+* {
+    font-family: 微軟正黑體, Arial;
+    color: #474747;
+    position: relative;
+}
+
+body {
+    width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #e6e6e6;
+}
+
+table {
+    width: 100%;
+    border-radius: 5px;
+    background-color: #fff;
+    border-collapse: collapse;
+    font-size: 15px;
+    color: #333;
+}
+
+thead {
+    background-color: #fafafa;
+    border-bottom: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+h2 {
+    text-align: center;
+}
+
+th {
+    text-align: center;
+    font-weight: 500;
+    color: #777;
+    padding: 10px;
+    font-size: 14px;
+}
+
+td {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    border: none;
+    padding: 6px 12px;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}

@@ -1,0 +1,41 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  backend:
+    build: ./camp-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - MONGO_URI=${MONGODB_URI}
+    env_file:
+      - .env
+    restart: always
+    depends_on:
+      - mongo
+    networks:
+      - camp-network
+
+  frontend:
+    build: ./camp-frontend
+    ports:
+      - "80:80"
+    restart: always
+    depends_on:
+      - backend
+    networks:
+      - camp-network
+
+  mongo:
+    image: mongo:5
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  mongo-data:
+
+networks:
+  camp-network:
+    driver: bridge

@@ -1,0 +1,248 @@
+doctype html
+html
+    head
+        title= title
+        link(rel="stylesheet", href="/styles.css")
+    body
+        .manage_top
+            h1 營地管理系統
+            button#openCreatePage ✚ 新增資料
+            button#openOrderPage 
+                a(href="/order") 訂單管理
+
+        table(border="1")
+            thead
+                tr
+                th ID
+                th 名稱
+                th 照片
+                th 營位圖
+                th 地區
+                th 縣市
+                th 海拔
+                th 類型
+                th 操作
+            tbody
+                each camp in campList
+                    tr
+                        td= camp.id
+                        td= camp.name
+                        td
+                            img(src=camp.picture, width="100")
+                        td
+                            img(src=camp.campImg, width="100")
+                        td= camp.areaName
+                        td= camp.cityName + " " + camp.county
+                        td= camp.altitude + " 公尺"
+                        td= camp.typeName
+                        td
+                            button.editBtn(data-id=camp._id) 編輯
+    .modal-backdrop.hidden
+        #campModal.hidden
+            form#campForm(method="POST", action="/camp")
+                .top#top_createMode.hidden.stick_top
+                    h3 新增營地
+                    button.exitBtn(type="button", id="cancelBtn") 關閉
+                .top#top_editMode.hidden.stick_top
+                    h3#modalTitle 修改資料模式
+                    .switchBtns 
+                        p 營區切換 : 
+                        a#btnPrev 上一個
+                        p.slash /
+                        a#btnNext 下一個
+                        button.closeBtn(type="button", id="closeBtn") 關閉
+                .modifyArea
+                    .campDataGroup
+                        input(type="hidden", name="_id")
+                        .group
+                            label ID:
+                            input(type="number", name="id", required)
+                        .group
+                            label 名稱:
+                            input(type="text", name="name", required)
+                        .group
+                            label 地區:
+                            select(name="area")
+                                each area in areaList
+                                    option(value=area.value)= area.name
+                        .group
+                            label 縣市:
+                            select(name="city")
+                                each city in cityList
+                                    option(value=city.value)= city.name
+                        .group
+                            label 鄉鎮:
+                            input(type="text", name="county")
+                        .group
+                            label 海拔:
+                            input(type="number", name="altitude")
+                        .group
+                            label 類型:
+                            select(name="type")
+                                each type in typeList
+                                    option(value=type.value)= type.name
+                        .imgGroup 
+                            .group
+                                label 圖片:
+                                input.imgUrl#picUrl(type="text", name="picture")
+                                button#btn_reviewPic(type="button") 預覽
+                                img#preview_pic
+                            .group
+                                label 營位圖:
+                                input.imgUrl#mapUrl(type="text", name="campImg")
+                                button#btn_reviewMap(type="button") 預覽
+                                img#preview_map
+                    .campsiteDataGroup
+                        h3 營位資訊
+                        button.addbtn(type="button" id="add-campsite") ➕ 新增一筆營位
+                        .campsiteEdit
+                            label ID:
+                            label 名稱:
+                            label 數量:
+                            label 價格:
+                            label.pic 圖片 URL:                
+                            #campsiteList
+                    .reservationGroup
+                        h3(id="textOpenDate")
+                        button(type="button" id="add-reservation" data-camp-id='') 開放當月訂位
+                    .btnGroup
+                        button.createBtn(type="submit") 儲存
+            .reservationEditor 
+            
+    script.
+      window.campList = !{JSON.stringify(campList || [])};
+    script(src="/js/campForm.js")
+
+//- doctype html 
+//- html 
+//-     head
+//-         title= title
+//-         link(rel="stylesheet", href="/styles.css")
+//-     body 
+//-         if success === 'created'
+//-             .success-msg(style="display: absolute; background: #dff0d8; color: #3c763d; padding: 10px; border-radius: 6px; margin-bottom: 15px;")
+//-                 | ✅ 資料新增成功！
+//-                 script.
+//-                     setTimeout(function () {
+//-                         var msg = document.querySelector('.success-msg');
+//-                         if (msg) {
+//-                         msg.style.display = 'none';
+//-                         }
+//-                     }, 3000);
+//-         else if success === 'updated'
+//-             .success-msg(style="display: absolute; background: #d9edf7; color: #31708f; padding: 10px; border-radius: 6px; margin-bottom: 15px;")
+//-                 | ✅ 資料更新成功！
+//-                 script.
+//-                     setTimeout(function () {
+//-                         var msg = document.querySelector('.success-msg');
+//-                         if (msg) {
+//-                         msg.style.display = 'none';
+//-                         }
+//-                     }, 3000);
+//-         script window.reservationData = !{JSON.stringify(reservations || [])};
+//-         - var formAction = editingCamp && editingCamp._id ? `/camp/edit/${editingCamp._id.toString()}` : "/camp"
+//-         - var isEditMode = editingCamp && editingCamp._id ? "display:block" : "display:none"
+//-         - var isCreateMode = editingCamp && editingCamp._id ? "display:none" : "display:block"
+//-         form(action=formAction, method="POST")
+//-             .top.create(style=isCreateMode)
+//-                 h3 新增資料模式
+//-                 //- pre= JSON.stringify(editingCamp, null, 2)
+//-             .top.edit(style=isEditMode)
+//-                 h3 修改資料模式
+//-                 a.switchMode(href="/camp") 切換新增模式                    
+//-                 .switchBtns 
+//-                     p 營區切換 : 
+//-                     a(href=`/camp?edit=${prevId}`) 上一個
+//-                     p.slash /
+//-                     a(href=`/camp?edit=${nextId}`) 下一個
+//-             .campDataGroup
+//-                 .group 
+//-                     label(for="id") Id:
+//-                     input(type="number" name="id" value=editingCamp?editingCamp.id:'' required)
+//-                 .group
+//-                     label(for="name") 營區名稱:
+//-                     input(type="text" name="name" value=editingCamp?editingCamp.name:'' required)            
+//-                 .group
+//-                     label(for="area") 區域:
+//-                     select(name="area" id="area" required )
+//-                         each areaItem in areaList
+//-                             option(value= areaItem.value,
+//-                             selected=editingCamp && editingCamp.area == areaItem.value ? 'selected' : false)= areaItem.name 
+//-                 .group
+//-                     label(for="city") 縣市:
+//-                     select(name="city" id="city" value=editingCamp?editingCamp.city:'' required)
+//-                         each cityItem in cityList
+//-                             option(value= cityItem.value,
+//-                             selected=editingCamp && editingCamp.city == cityItem.value ? 'selected' : false)= cityItem.name
+//-                 .group
+//-                     label(for="county") 鄉鎮:
+//-                     input(type="text" name="county" value=editingCamp?editingCamp.county:'' required)
+//-                 .group
+//-                     label(for="altitude") 海拔:
+//-                     input(type="number" name="altitude" value=editingCamp?editingCamp.altitude:'' required)
+//-                 .group
+//-                     label(for="type") 類型:
+//-                     select(name="type" id="type" value=editingCamp?editingCamp.type:'' required)
+//-                         each typeItem in typeList
+//-                             option(value= typeItem.value, 
+//-                             selected=editingCamp && editingCamp.type == typeItem.value ? 'selected' : false)= typeItem.name
+//-                 .group
+//-                     label(for="picture") 圖片:
+//-                     input.imgUrl(type="text" name="picture" value=editingCamp?editingCamp.picture:'' required)
+//-                 .group
+//-                     label(for="campImg") 營位圖:
+//-                     input.imgUrl(type="text" name="campImg" value=editingCamp?editingCamp.campImg:'' required)                
+//-             .campsiteDataGroup
+//-                 h3 營位資訊
+//-                 button.addbtn(type="button" id="add-campsite") ➕ 新增一筆營位
+//-                 .campsiteEdit
+//-                     label ID:
+//-                     label 名稱:
+//-                     label 數量:
+//-                     label 價格:
+//-                     label.pic 圖片 URL:                
+//-                     #campsiteList
+//-                         each campsite, index in editingCamp && editingCamp.campsites ? editingCamp.campsites : []
+//-                             .campsite-item                        
+//-                                 input(type="text", name=`campsites[${index}][id]`, value=campsite.id required)                        
+//-                                 input(type="text", name=`campsites[${index}][name]`, value=campsite.name required)                        
+//-                                 input(type="number", name=`campsites[${index}][amount]`, value=campsite.amount required)                        
+//-                                 input(type="number", name=`campsites[${index}][price]`, value=campsite.price required)                        
+//-                                 input.pic(type="text", name=`campsites[${index}][picture]`, value=campsite.picture required)
+//-                                 button(type="button", class="removeCampsiteBtn") 刪除
+//-             br
+//-             h3(id="textOpenDate")
+//-             button(id="add-reservation" data-camp-id=editingCamp ? editingCamp.id : '') 開放當月訂位
+
+//-             button.updateBtn(formActiontype="submit", style=isEditMode) 更新資料
+//-             button.createBtn(type="submit", style=isCreateMode) 新增資料
+//-         hr
+//-         h1 營地表
+//-         if campList && campList.length > 0
+//-             table(border="1")
+//-                 tread
+//-                     tr
+//-                         th ID
+//-                         th name
+//-                         th 照片
+//-                         th 營地名稱
+//-                         th 地區
+//-                         th 縣市
+//-                         th 海拔
+//-                         th 類型
+//-                 tbody
+//-                     each camp in campList
+//-                         tr
+//-                             td= camp.id
+//-                             td= camp.name
+//-                             td 
+//-                                 img(src=camp.picture, width="100")
+//-                             td
+//-                                 img(src=camp.campImg, width="100")
+//-                             td= camp.areaName
+//-                             td= camp.cityName + " " + camp.county
+//-                             td= camp.altitude + " 公尺"
+//-                             td= camp.typeName
+//-                             td
+//-                                 a(href=`/camp?edit=${camp._id}`) 修改
+//-     script(src="/js/campForm.js")

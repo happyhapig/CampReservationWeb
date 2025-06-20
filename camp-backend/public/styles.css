@@ -1,0 +1,318 @@
+* {
+    font-family: 微軟正黑體, Arial;
+    color: #474747;
+    position: relative;
+}
+
+body {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #e6e6e6;
+}
+
+tbody {
+    font-size: 14px;
+}
+
+.manage_top {
+    /* display: flex;
+    justify-content: start;
+    align-items: center; */
+    h1, button {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    button {
+        margin-left: 10px;
+        background-color: #c4bf56;
+        color: white;
+        padding: 6px 13px;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    #openOrderPage {
+        background-color: #aa4465;
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    }
+}
+
+.group {    
+    margin-bottom: 10px;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.imgGroup {
+    width: calc(100% - 20px);
+    .group {
+        width: 50%;
+        display: inline-block;
+        .imgUrl {
+            width: calc(100% - 120px);
+        }
+        img {
+            max-width: 90%;
+            display: block;
+            margin-top: 10px;
+        }
+        button {
+            margin-left: 5px;
+        }
+    }
+}
+
+label {
+    display: inline-block;
+    /* width: 80px; */
+    text-align: right;
+    margin-right: 5px;
+}
+
+select {
+    width: 150px;
+    padding: 3px;
+}
+
+input {
+    padding: 3px;
+}
+
+td {
+    padding: 5px;
+}
+
+.campsiteEdit {
+    margin-top: 10px;
+    font-size: 0px;
+    label {
+        margin: initial;
+        width: calc((100% - 350px) / 4);
+        text-align: center;
+        box-sizing: border-box;
+        padding: 3px 0px;
+        font-size: 14px;
+        margin-right: 5px;
+    }
+    input {
+        width: calc((100% - 350px) / 4);
+        padding: 3px 0px;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 14px;
+        margin-right: 5px;
+    }
+    .pic {
+        width: 200px;
+    }
+    button {
+        width: 50px;
+    }
+    .btn-previewCampsite {
+        margin-right: 5px;
+        width: 60px;
+    }
+}
+
+.campsite-item {
+    margin-top: 3px;
+}
+
+.addbtn {
+    margin: 0px 10px;
+    display: inline-block;
+}
+
+h3 {
+    display: inline-block;
+    margin: 0px;
+}
+
+.top {
+    position: relative;
+    &#top_createMode {
+        background-color: #ab5eab;
+    }
+    &#top_editMode {
+        background-color: #5ea7ab;
+    }
+
+    .exitBtn, h3, a {
+        display: inline-block;
+        vertical-align: middle;        
+    }
+
+    .exitBtn {
+        color: #ab5eab;
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-right: 10px;
+        font-weight: 900;
+        padding: 5px 15px;
+        font-size: 14px;
+    }
+
+    h3 {
+        margin: 15px 20px;
+        color: white;
+    }
+    a {
+        text-decoration: none;
+    }
+
+    .switchMode {
+        color: rgb(75, 75, 75);
+        font-weight: 900;
+        font-size: 14px;
+        background-color: #d8d8d8;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .switchBtns {
+        color: white;
+        font-weight: 900;
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-right: 20px;
+        button {
+            color: #5ea7ab;
+            font-weight: 900;
+            padding: 5px 15px;
+            font-size: 14px;
+        }
+        p, button, a {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        p {
+            color: white;
+        }
+        a {
+            cursor: pointer;
+            margin: 0 10px;
+            color: #fce703;
+        }
+    }
+}
+
+.stick_top {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.btnGroup {
+    display: flex;
+    justify-content: end;
+}
+
+.reservationGroup {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin: 10px 20px;    
+
+    button {
+        margin-left: 10px;
+        background-color: #c4bf56;
+        color: white;
+        padding: 8px 13px;
+        font-weight: 900;
+        font-size: 14px;
+    }
+}
+
+.createBtn {
+    background-color: #ab5eab;
+    color: white;
+    padding: 6px 20px;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    font-weight: 900;
+    font-size: 16px;
+    margin: 10px 20px;
+}
+
+.updateBtn {
+    background-color: #5ea7ab;
+    color: white;
+    padding: 6px 20px;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    font-weight: 900;
+    font-size: 16px;
+    margin: 10px 20px;
+}
+
+button {
+    cursor: pointer;
+    padding: 3px 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.campDataGroup {
+    /* padding-top: 15px; */
+    margin: 20px;
+}
+
+.campsiteDataGroup {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    vertical-align: middle;
+    margin: 20px;
+    margin-bottom: 0px;
+}
+
+hr {
+    margin-top: 50px;
+}
+
+.hidden {
+  display: none;
+}
+
+#campModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #e6e6e6;
+    z-index: 999;
+    width: 800px;
+    max-width: 90%;
+    height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    overflow-y: auto;
+}
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 998;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* .btn-previewCampsite {
+    padding: 0;
+    width: 10px;
+} */

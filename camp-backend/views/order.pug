@@ -1,0 +1,38 @@
+doctype html
+
+html
+    head
+        title 訂單管理
+        link(rel="stylesheet", href="/css/order.css")
+    body
+        h2 訂單管理
+        table
+            thead
+                tr
+                    th 訂單 ID
+                    th 營區名稱
+                    th 營位名稱
+                    th 日期
+                    th 夜數
+                    th 數量
+                    th 建立時間
+                    th 刪除
+            tbody
+                each order in orders
+                    - const itemCount = order.items.length
+                    each item, index in order.items
+                        tr
+                            if index === 0
+                                td(rowspan=itemCount)= order._id
+                                td(rowspan=itemCount)= item.campName
+                            td= item.campsiteName
+                            td= item.date
+                            td= item.nights
+                            td= item.amount
+                            if index === 0
+                                td(rowspan=itemCount)= new Date(order.createdAt).toISOString().slice(0, 10)
+                                td(rowspan=itemCount)
+                                    form(method="POST", action=`/order/delete/${order._id}`, onsubmit="return confirm('確定要刪除這筆訂單嗎？')")
+                                        button(type="submit", class="btn-delete") 刪除
+                                    
+pre= JSON.stringify(order, null, 2)
