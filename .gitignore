@@ -18,13 +18,10 @@ build/
 .DS_Store
 Thumbs.db
 
-backend/MongoDB.txt
-
 # 前端
 camp-frontend/node_modules/
 camp-frontend/dist/
-camp-frontend/.env
+camp-frontend/.env.production
 
 # 後端
 camp-backend/node_modules/
-camp-backend/.env
