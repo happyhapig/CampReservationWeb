@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { useLocation, useNavigate } from "react-router-dom";
 import { cityList } from '../constants/list_city';
 import Calendar from '../components/Calendar';
+import Footer from '../components/Footer';
 import api from '../api/axios';
 import { Box, Button, Container, Grid, Typography, Card, CardMedia, CardContent } from '@mui/material';
 
@@ -159,6 +160,7 @@ function Book() {
                     </Grid>
                 </Grid>
             </Container>
+            <Footer />
         </Box>
       );
 }

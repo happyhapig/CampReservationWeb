@@ -3,6 +3,7 @@ import '../App.css';
 import Navbar from '../components/Navbar';
 import CampBlock from '../components/CampBlock';
 import CampFilter from '../components/CampFilter';
+import Footer from '../components/Footer';
 import api from '../api/axios';
 import { Container, Grid, Box, Typography } from '@mui/material';
 
@@ -56,7 +57,7 @@ const Home = () => {
                         </Box>
                     </Grid>
             
-                    <Grid>
+                    <Grid sx={{ mb: 3 }}>
                         {filteredList.length === 0 ? (
                             <Typography align="center">目前沒有資料</Typography>
                             ) : (
@@ -87,6 +88,7 @@ const Home = () => {
                     </Grid>
                 </Grid>
             </Container>
+            <Footer />
         </Box>
     );
 }

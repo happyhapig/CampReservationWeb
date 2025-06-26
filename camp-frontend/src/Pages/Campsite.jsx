@@ -3,7 +3,8 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { cityList } from '../constants/list_city';
 import { Box, Container, Grid, Typography, Button, Card, CardMedia, CardContent } from '@mui/material';
 import { useEffect, useState } from 'react';
-import api from '../api/axios'; // 你自己的 axios instance
+import api from '../api/axios';
+import Footer from '../components/Footer';
 
 function Campsite() {
     
@@ -134,6 +135,7 @@ function Campsite() {
                     </Grid>
                 </Grid>
             </Container>
+            <Footer />
         </Box>
     );
 };
