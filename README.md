@@ -1,5 +1,7 @@
 # COME CAMP
 
+## 前往 [COME CAMP](http://bettysu-info.duckdns.org/)
+
 COME CAMP 是一個結合對露營的喜好，與學習全端開發為方向的全端作品，希望透過這個實作專案，練習前後端分離的開發流程，打造出一個實用的「營區預訂平台」。
 
 本專案包含兩大主要功能模組：
